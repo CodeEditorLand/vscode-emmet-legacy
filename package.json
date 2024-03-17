@@ -48,16 +48,16 @@
     "onLanguage:typescriptreact"
   ],
   "dependencies": {
-    "@emmetio/css-parser": "^0.3.0",
-    "@emmetio/expand-abbreviation": "^0.5.4",
-    "@emmetio/extract-abbreviation": "^0.1.1",
-    "@emmetio/html-matcher": "^0.3.1"
+    "@emmetio/css-parser": "0.3.0",
+    "@emmetio/expand-abbreviation": "0.5.4",
+    "@emmetio/extract-abbreviation": "0.1.1",
+    "@emmetio/html-matcher": "0.3.1"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
-    "mocha": "^2.3.3",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "@types/mocha": "2.2.32",
+    "@types/node": "6.0.40",
+    "mocha": "2.3.3",
+    "typescript": "2.0.3",
+    "vscode": "1.0.0"
   }
 }
