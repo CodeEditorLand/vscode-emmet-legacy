@@ -1,70 +1,79 @@
 {
-    "name": "emmet",
-    "displayName": "emmet",
-    "description": "Emmet support for VS Code",
-    "version": "0.0.1",
-    "publisher": "vscode",
-    "engines": {
-        "vscode": "1.10.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Microsoft/vscode-emmet"
-    },
-    "activationEvents": [
-        "onLanguage:html",
-        "onLanguage:jade",
-        "onLanguage:slim",
-        "onLanguage:haml",
-        "onLanguage:xml",
-        "onLanguage:xsl",
-        "onLanguage:css",
-        "onLanguage:scss",
-        "onLanguage:sass",
-        "onLanguage:less",
-        "onLanguage:stylus",
-        "onLanguage:javascriptreact",
-        "onLanguage:typescriptreact"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "configuration": {
-            "type": "object",
-            "title": "Emmet configuration",
-            "properties": {
-                "emmet.suggestExpandedAbbreviation": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Shows expanded emmet abbreviations as suggestions"
-                },
-                "emmet.suggestAbbreviations": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Shows possible emmet abbreviations as suggestions"
-                }
-            }
-        }
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "5.4.2",
-        "vscode": "1.0.0",
-        "mocha": "10.3.0",
-        "@types/node": "20.11.30",
-        "@types/mocha": "10.0.6"
-    },
-    "dependencies": {
-        "@emmetio/expand-abbreviation": "0.7.3",
-        "@emmetio/extract-abbreviation": "0.2.0",
-        "@emmetio/html-matcher": "1.3.0",
-        "@emmetio/css-parser": "0.4.0"
-    }
+	"name": "emmet",
+	"displayName": "emmet",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Emmet support for VS Code",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"bugs": {
+		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/src/extension",
+	"scripts": {
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "tsc -p ./"
+	},
+	"contributes": {
+		"configuration": {
+			"properties": {
+				"emmet.suggestAbbreviations": {
+					"default": true,
+					"description": "Shows possible emmet abbreviations as suggestions",
+					"type": "boolean"
+				},
+				"emmet.suggestExpandedAbbreviation": {
+					"default": true,
+					"description": "Shows expanded emmet abbreviations as suggestions",
+					"type": "boolean"
+				}
+			},
+			"title": "Emmet configuration",
+			"type": "object"
+		}
+	},
+	"activationEvents": [
+		"onLanguage:html",
+		"onLanguage:jade",
+		"onLanguage:slim",
+		"onLanguage:haml",
+		"onLanguage:xml",
+		"onLanguage:xsl",
+		"onLanguage:css",
+		"onLanguage:scss",
+		"onLanguage:sass",
+		"onLanguage:less",
+		"onLanguage:stylus",
+		"onLanguage:javascriptreact",
+		"onLanguage:typescriptreact"
+	],
+	"dependencies": {
+		"@emmetio/css-parser": "0.4.0",
+		"@emmetio/expand-abbreviation": "0.7.3",
+		"@emmetio/extract-abbreviation": "0.2.0",
+		"@emmetio/html-matcher": "1.3.0"
+	},
+	"devDependencies": {
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.11.30",
+		"mocha": "10.3.0",
+		"typescript": "5.4.2",
+		"typescript-esbuild": "latest",
+		"vscode": "1.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }
