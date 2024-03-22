@@ -1,26 +1,30 @@
 {
-	"activationEvents": [
-		"onLanguage:html",
-		"onLanguage:jade",
-		"onLanguage:slim",
-		"onLanguage:haml",
-		"onLanguage:xml",
-		"onLanguage:xsl",
-		"onLanguage:css",
-		"onLanguage:scss",
-		"onLanguage:sass",
-		"onLanguage:less",
-		"onLanguage:stylus",
-		"onLanguage:javascriptreact",
-		"onLanguage:typescriptreact"
-	],
-	"author": {
-		"email": "Hello@Playform.Cloud",
-		"name": "Playform",
-		"url": "https://playform.cloud"
-	},
+	"name": "emmet",
+	"displayName": "emmet",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Emmet support for VS Code",
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
 	"bugs": {
 		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Playform",
+		"email": "Hello@Playform.Cloud",
+		"url": "https://playform.cloud"
+	},
+	"type": "module",
+	"main": "./out/src/extension",
+	"scripts": {
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "tsc -p ./"
 	},
 	"contributes": {
 		"configuration": {
@@ -40,40 +44,36 @@
 			"type": "object"
 		}
 	},
+	"activationEvents": [
+		"onLanguage:html",
+		"onLanguage:jade",
+		"onLanguage:slim",
+		"onLanguage:haml",
+		"onLanguage:xml",
+		"onLanguage:xsl",
+		"onLanguage:css",
+		"onLanguage:scss",
+		"onLanguage:sass",
+		"onLanguage:less",
+		"onLanguage:stylus",
+		"onLanguage:javascriptreact",
+		"onLanguage:typescriptreact"
+	],
 	"dependencies": {
 		"@emmetio/css-parser": "0.4.0",
 		"@emmetio/expand-abbreviation": "0.7.3",
 		"@emmetio/extract-abbreviation": "0.2.0",
 		"@emmetio/html-matcher": "1.3.0"
 	},
-	"description": "Emmet support for VS Code",
 	"devDependencies": {
 		"@types/mocha": "10.0.6",
 		"@types/node": "20.11.30",
 		"mocha": "10.3.0",
 		"typescript": "5.4.2",
-		"typescript-esbuild": "",
+		"typescript-esbuild": "0.4.5",
 		"vscode": "1.0.0"
 	},
-	"displayName": "emmet",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"license": "SEE LICENSE IN LICENSE",
-	"main": "./out/src/extension",
-	"name": "emmet",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"scripts": {
-		"compile": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "tsc -p ./"
-	},
-	"type": "module",
-	"version": "0.0.1"
+	}
 }
