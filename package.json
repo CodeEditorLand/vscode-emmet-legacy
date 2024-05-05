@@ -4,27 +4,29 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "Emmet support for VS Code",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandEmmetLegacy#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandEmmetLegacy/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandEmmetLegacy.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
 	"type": "module",
 	"main": "./out/src/extension",
 	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
 		"compile": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "tsc -p ./"
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"contributes": {
 		"configuration": {
@@ -59,19 +61,11 @@
 		"onLanguage:javascriptreact",
 		"onLanguage:typescriptreact"
 	],
-	"dependencies": {
-		"@emmetio/css-parser": "0.4.0",
-		"@emmetio/expand-abbreviation": "0.7.3",
-		"@emmetio/extract-abbreviation": "0.2.0",
-		"@emmetio/html-matcher": "1.3.0"
-	},
+	"dependencies": {},
 	"devDependencies": {
-		"@types/mocha": "10.0.6",
-		"@types/node": "20.11.30",
-		"mocha": "10.3.0",
-		"typescript": "5.4.2",
-		"typescript-esbuild": "0.4.5",
-		"vscode": "1.0.0"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/node": "20.12.7"
 	},
 	"publishConfig": {
 		"access": "public"
