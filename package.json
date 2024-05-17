@@ -1,27 +1,7 @@
 {
 	"name": "emmet",
 	"displayName": "emmet",
-	"version": "0.0.1",
-	"private": false,
 	"description": "Emmet support for VS Code",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandEmmetLegacy#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandEmmetLegacy/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandEmmetLegacy.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🛬 Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
 	"main": "./out/src/extension",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
@@ -64,10 +44,6 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
 		"@types/node": "20.12.10"
-	},
-	"publishConfig": {
-		"access": "public"
 	}
 }
