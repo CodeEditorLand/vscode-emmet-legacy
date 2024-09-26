@@ -1,11 +1,19 @@
 {
-	"name": "emmet",
-	"displayName": "emmet",
-	"description": "Emmet support for VS Code",
-	"main": "./out/src/extension",
-	"scripts": {
-		"compile": "tsc -watch -p ./"
-	},
+	"activationEvents": [
+		"onLanguage:html",
+		"onLanguage:jade",
+		"onLanguage:slim",
+		"onLanguage:haml",
+		"onLanguage:xml",
+		"onLanguage:xsl",
+		"onLanguage:css",
+		"onLanguage:scss",
+		"onLanguage:sass",
+		"onLanguage:less",
+		"onLanguage:stylus",
+		"onLanguage:javascriptreact",
+		"onLanguage:typescriptreact"
+	],
 	"contributes": {
 		"configuration": {
 			"properties": {
@@ -24,23 +32,15 @@
 			"type": "object"
 		}
 	},
-	"activationEvents": [
-		"onLanguage:html",
-		"onLanguage:jade",
-		"onLanguage:slim",
-		"onLanguage:haml",
-		"onLanguage:xml",
-		"onLanguage:xsl",
-		"onLanguage:css",
-		"onLanguage:scss",
-		"onLanguage:sass",
-		"onLanguage:less",
-		"onLanguage:stylus",
-		"onLanguage:javascriptreact",
-		"onLanguage:typescriptreact"
-	],
 	"dependencies": {},
+	"description": "Emmet support for VS Code",
 	"devDependencies": {
 		"@types/node": "22.7.3"
+	},
+	"displayName": "emmet",
+	"main": "./out/src/extension",
+	"name": "emmet",
+	"scripts": {
+		"compile": "tsc -watch -p ./"
 	}
 }
