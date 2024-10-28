@@ -35,7 +35,7 @@
 	"dependencies": {},
 	"description": "Emmet support for VS Code",
 	"devDependencies": {
-		"@types/node": "22.7.9"
+		"@types/node": "22.8.1"
 	},
 	"displayName": "emmet",
 	"main": "./out/src/extension",
