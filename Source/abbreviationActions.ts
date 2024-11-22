@@ -10,11 +10,14 @@ const field = (index, placeholder) =>
 
 export function wrapWithAbbreviation() {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!editor) {
 		vscode.window.showInformationMessage("No editor is active");
+
 		return;
 	}
 	let rangeToReplace: vscode.Range = editor.selection;
+
 	if (rangeToReplace.isEmpty) {
 		rangeToReplace = new vscode.Range(
 			rangeToReplace.start.line,
@@ -24,6 +27,7 @@ export function wrapWithAbbreviation() {
 		);
 	}
 	let textToReplace = editor.document.getText(rangeToReplace);
+
 	let options = {
 		field: field,
 		syntax: getSyntax(editor.document),
@@ -35,6 +39,7 @@ export function wrapWithAbbreviation() {
 		.showInputBox({ prompt: "Enter Abbreviation" })
 		.then((abbr) => {
 			if (!abbr || !abbr.trim()) return;
+
 			let expandedText = expand(abbr, options);
 			editor.insertSnippet(
 				new vscode.SnippetString(expandedText),
@@ -45,12 +50,16 @@ export function wrapWithAbbreviation() {
 
 export function expandAbbreviation() {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!editor) {
 		vscode.window.showInformationMessage("No editor is active");
+
 		return;
 	}
 	let rangeToReplace: vscode.Range = editor.selection;
+
 	let abbr = editor.document.getText(rangeToReplace);
+
 	if (rangeToReplace.isEmpty) {
 		[rangeToReplace, abbr] = extractAbbreviation(rangeToReplace.start);
 	}

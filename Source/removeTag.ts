@@ -6,12 +6,15 @@ import { getOpenCloseRange } from "./util";
 
 export function removeTag() {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!editor) {
 		vscode.window.showInformationMessage("No editor is active");
+
 		return;
 	}
 
 	let indentInSpaces = "";
+
 	for (let i = 0; i < editor.options.tabSize; i++) {
 		indentInSpaces += " ";
 	}
@@ -36,7 +39,9 @@ function getRangeToRemove(
 	indentInSpaces: string,
 ): vscode.Range[] {
 	let offset = editor.document.offsetAt(selection.start);
+
 	let [openRange, closeRange] = getOpenCloseRange(editor.document, offset);
+
 	if (
 		!openRange.contains(selection.start) &&
 		!closeRange.contains(selection.start)
@@ -44,6 +49,7 @@ function getRangeToRemove(
 		return [];
 	}
 	let ranges = [openRange];
+
 	if (closeRange) {
 		for (
 			let i = openRange.start.line + 1;
@@ -51,6 +57,7 @@ function getRangeToRemove(
 			i++
 		) {
 			let lineContent = editor.document.lineAt(i).text;
+
 			if (lineContent.startsWith("\t")) {
 				ranges.push(new vscode.Range(i, 0, i, 1));
 			} else if (lineContent.startsWith(indentInSpaces)) {

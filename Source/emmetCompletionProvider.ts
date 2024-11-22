@@ -12,6 +12,7 @@ import {
 
 const field = (index, placeholder) =>
 	`\${${index}${placeholder ? ":" + placeholder : ""}}`;
+
 const snippetCompletionsCache = new Map<string, vscode.CompletionItem[]>();
 
 export class EmmetCompletionItemProvider
@@ -23,12 +24,15 @@ export class EmmetCompletionItemProvider
 		token: vscode.CancellationToken,
 	): Thenable<vscode.CompletionList> {
 		let currentWord = getCurrentWord(document, position);
+
 		let expandedAbbr = getExpandedAbbreviation(document, position);
+
 		let abbreviationSuggestions = getAbbreviationSuggestions(
 			getSyntax(document),
 			currentWord,
 			expandedAbbr && currentWord === expandedAbbr.label,
 		);
+
 		let completionItems = expandedAbbr
 			? [expandedAbbr, ...abbreviationSuggestions]
 			: abbreviationSuggestions;
@@ -51,10 +55,12 @@ function getExpandedAbbreviation(
 		return;
 	}
 	let [rangeToReplace, wordToExpand] = extractAbbreviation(position);
+
 	if (!rangeToReplace || !wordToExpand) {
 		return;
 	}
 	let syntax = getSyntax(document);
+
 	let expandedWord = expand(wordToExpand, {
 		field: field,
 		syntax: syntax,
@@ -80,7 +86,9 @@ function getCurrentWord(
 	position: vscode.Position,
 ): string {
 	let wordAtPosition = document.getWordRangeAtPosition(position);
+
 	let currentWord = "";
+
 	if (wordAtPosition && wordAtPosition.start.character < position.character) {
 		let word = document.getText(wordAtPosition);
 		currentWord = word.substr(
@@ -112,6 +120,7 @@ function getAbbreviationSuggestions(
 
 	if (!snippetCompletionsCache.has(syntax)) {
 		let registry = createSnippetsRegistry(syntax);
+
 		let completions: vscode.CompletionItem[] = registry
 			.all({ type: "string" })
 			.map((snippet) => {
@@ -124,6 +133,7 @@ function getAbbreviationSuggestions(
 				item.documentation = removeTabStops(expandedWord);
 				item.detail = "Complete Emmet Abbreviation";
 				item.insertText = snippet.key;
+
 				return item;
 			});
 		snippetCompletionsCache.set(syntax, completions);

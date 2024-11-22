@@ -6,6 +6,7 @@ import { validate } from "./util";
 
 export function fetchEditPoint(direction: string): void {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!validate()) {
 		return;
 	}
@@ -31,6 +32,7 @@ function nextEditPoint(
 		lineNum++
 	) {
 		let updatedSelection = findEditPoint(lineNum, editor, position, "next");
+
 		if (updatedSelection) {
 			return updatedSelection;
 		}
@@ -43,6 +45,7 @@ function prevEditPoint(
 ): vscode.Selection {
 	for (let lineNum = position.line; lineNum >= 0; lineNum--) {
 		let updatedSelection = findEditPoint(lineNum, editor, position, "prev");
+
 		if (updatedSelection) {
 			return updatedSelection;
 		}
@@ -59,10 +62,12 @@ function findEditPoint(
 
 	if (lineNum != position.line && line.isEmptyOrWhitespace) {
 		editor.selection = new vscode.Selection(lineNum, 0, lineNum, 0);
+
 		return;
 	}
 
 	let lineContent = line.text;
+
 	if (lineNum === position.line && direction === "prev") {
 		lineContent = lineContent.substr(0, position.character);
 	}
@@ -73,6 +78,7 @@ function findEditPoint(
 					lineNum === position.line ? position.character : 0,
 				)
 			: lineContent.lastIndexOf('""');
+
 	let emptyTagIndex =
 		direction === "next"
 			? lineContent.indexOf(

@@ -11,12 +11,15 @@ import { isStyleSheet, validate } from "./util";
 
 export function fetchSelectItem(direction: string): void {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!validate()) {
 		return;
 	}
 
 	let nextItem;
+
 	let prevItem;
+
 	let parseContent;
 
 	if (isStyleSheet(editor.document.languageId)) {
@@ -30,6 +33,7 @@ export function fetchSelectItem(direction: string): void {
 	}
 
 	let rootNode: Node = parseContent(editor.document.getText());
+
 	let newSelections: vscode.Selection[] = [];
 	editor.selections.forEach((selection) => {
 		let updatedSelection =

@@ -48,6 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 			language: language.id,
 			scheme: "file",
 		};
+
 		const provider = vscode.languages.registerCompletionItemProvider(
 			selector,
 			completionProvider,

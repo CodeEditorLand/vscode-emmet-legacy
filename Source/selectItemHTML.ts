@@ -11,6 +11,7 @@ export function nextItemHTML(
 	rootNode: Node,
 ): vscode.Selection {
 	let offset = editor.document.offsetAt(selection.active);
+
 	let currentNode = getNode(rootNode, offset);
 
 	// Cursor is in the open tag, look for attributes
@@ -20,6 +21,7 @@ export function nextItemHTML(
 			editor.document,
 			currentNode,
 		);
+
 		if (attrSelection) {
 			return attrSelection;
 		}
@@ -27,6 +29,7 @@ export function nextItemHTML(
 
 	// Get the first child of current node which is right after the cursor
 	let nextNode = currentNode.firstChild;
+
 	while (nextNode && nextNode.start < offset) {
 		nextNode = nextNode.nextSibling;
 	}
@@ -46,7 +49,9 @@ export function prevItemHTML(
 	rootNode: Node,
 ): vscode.Selection {
 	let offset = editor.document.offsetAt(selection.active);
+
 	let currentNode = getNode(rootNode, offset);
+
 	let prevNode: Node;
 
 	// Cursor is in the open tag after the tag name
@@ -65,6 +70,7 @@ export function prevItemHTML(
 		} else {
 			// Select the child that appears just before the cursor
 			prevNode = currentNode.firstChild;
+
 			while (prevNode.nextSibling && prevNode.nextSibling.end < offset) {
 				prevNode = prevNode.nextSibling;
 			}
@@ -83,6 +89,7 @@ export function prevItemHTML(
 	}
 
 	let attrSelection = getPrevAttribute(selection, editor.document, prevNode);
+
 	return attrSelection
 		? attrSelection
 		: getSelectionFromNode(prevNode, editor.document);
@@ -94,6 +101,7 @@ function getSelectionFromNode(
 ): vscode.Selection {
 	if (node && node.open) {
 		let selectionStart = document.positionAt(node.open.start + 1);
+
 		let selectionEnd =
 			node.type === "comment"
 				? document.positionAt(node.open.end - 1)
@@ -117,6 +125,7 @@ function getNextAttribute(
 	}
 
 	let selectionStart = document.offsetAt(selection.anchor);
+
 	let selectionEnd = document.offsetAt(selection.active);
 
 	for (let i = 0; i < node.attributes.length; i++) {
@@ -158,6 +167,7 @@ function getPrevAttribute(
 	}
 
 	let selectionStart = document.offsetAt(selection.anchor);
+
 	let selectionEnd = document.offsetAt(selection.active);
 
 	for (let i = node.attributes.length - 1; i >= 0; i--) {

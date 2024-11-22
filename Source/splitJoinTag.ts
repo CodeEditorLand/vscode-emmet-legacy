@@ -8,8 +8,10 @@ import { getNode, getNodeOuterSelection, isStyleSheet } from "./util";
 
 export function splitJoinTag() {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!editor) {
 		vscode.window.showInformationMessage("No editor is active");
+
 		return;
 	}
 	if (isStyleSheet(editor.document.languageId)) {
@@ -36,8 +38,11 @@ function getRangesToReplace(
 	rootNode: Node,
 ): [vscode.Range, string] {
 	let offset = document.offsetAt(selection.start);
+
 	let nodeToUpdate: Node = getNode(rootNode, offset);
+
 	let rangeToReplace: vscode.Range;
+
 	let textToReplaceWith: string;
 
 	if (!nodeToUpdate.close) {
@@ -48,8 +53,11 @@ function getRangesToReplace(
 				document.positionAt(nodeToUpdate.end),
 			),
 		);
+
 		let m = nodeText.match(/(\s*\/)?>$/);
+
 		let end = nodeToUpdate.open.end;
+
 		let start = m ? end - m[0].length : end;
 
 		rangeToReplace = new vscode.Range(

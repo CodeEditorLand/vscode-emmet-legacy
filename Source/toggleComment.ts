@@ -8,20 +8,28 @@ import * as vscode from "vscode";
 import { getNode, isStyleSheet } from "./util";
 
 const startCommentStylesheet = "/*";
+
 const endCommentStylesheet = "*/";
+
 const startCommentHTML = "<!--";
+
 const endCommentHTML = "-->";
 
 export function toggleComment() {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!editor) {
 		vscode.window.showInformationMessage("No editor is active");
+
 		return;
 	}
 
 	let toggleCommentInternal;
+
 	let startComment;
+
 	let endComment;
+
 	let parseContent;
 
 	if (isStyleSheet(editor.document.languageId)) {
@@ -37,6 +45,7 @@ export function toggleComment() {
 	}
 
 	let rootNode = parseContent(editor.document.getText());
+
 	let rangesToUpdate = [];
 
 	editor.edit((editBuilder) => {
@@ -49,6 +58,7 @@ export function toggleComment() {
 			rangesToUnComment.forEach((rangeToDelete) => {
 				editBuilder.delete(rangeToDelete);
 			});
+
 			if (positionForCommentStart) {
 				editBuilder.insert(positionForCommentStart, startComment);
 			}
@@ -65,15 +75,19 @@ function toggleCommentHTML(
 	rootNode: Node,
 ): [vscode.Range[], vscode.Position, vscode.Position] {
 	let offset = document.offsetAt(selection.start);
+
 	let nodeToUpdate = getNode(rootNode, offset);
 
 	let rangesToUnComment = getRangesToUnCommentHTML(nodeToUpdate, document);
+
 	if (nodeToUpdate.type === "comment") {
 		return [rangesToUnComment, null, null];
 	}
 
 	let positionForCommentStart = document.positionAt(nodeToUpdate.start);
+
 	let positionForCommentEnd = document.positionAt(nodeToUpdate.end);
+
 	return [rangesToUnComment, positionForCommentStart, positionForCommentEnd];
 }
 
@@ -117,6 +131,7 @@ function toggleCommentStylesheet(
 	rootNode: Node,
 ): [vscode.Range[], vscode.Position, vscode.Position] {
 	let selectionStart = document.offsetAt(selection.anchor);
+
 	let selectionEnd = document.offsetAt(selection.active);
 
 	// If current node is commented, then uncomment and return
@@ -127,6 +142,7 @@ function toggleCommentStylesheet(
 		document,
 		true,
 	);
+
 	if (rangesToUnComment.length > 0) {
 		return [rangesToUnComment, null, null];
 	}
@@ -140,7 +156,9 @@ function toggleCommentStylesheet(
 		document,
 		false,
 	);
+
 	let positionForCommentStart = document.positionAt(nodeToComment.start);
+
 	let positionForCommentEnd = document.positionAt(nodeToComment.end);
 
 	return [rangesToUnComment, positionForCommentStart, positionForCommentEnd];
@@ -160,6 +178,7 @@ function getRangesToUnCommentStylesheet(
 	let rangesToUnComment = [];
 	rootNode.comments.forEach((comment) => {
 		let foundComment = false;
+
 		if (selectionInsideComment) {
 			foundComment =
 				comment.start <= selectionStart && comment.end >= selectionEnd;

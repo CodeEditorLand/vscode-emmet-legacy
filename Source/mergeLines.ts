@@ -8,8 +8,10 @@ import { getNode, getNodeOuterSelection, isStyleSheet } from "./util";
 
 export function mergeLines() {
 	let editor = vscode.window.activeTextEditor;
+
 	if (!editor) {
 		vscode.window.showInformationMessage("No editor is active");
+
 		return;
 	}
 	if (isStyleSheet(editor.document.languageId)) {
@@ -36,6 +38,7 @@ function getRangesToReplace(
 	rootNode: Node,
 ): [vscode.Range, string] {
 	let startNodeToUpdate: Node;
+
 	let endNodeToUpdate: Node;
 
 	if (selection.isEmpty) {
@@ -60,6 +63,7 @@ function getRangesToReplace(
 		document.positionAt(startNodeToUpdate.start),
 		document.positionAt(endNodeToUpdate.end),
 	);
+
 	let textToReplaceWith = document
 		.getText(rangeToReplace)
 		.replace(/\r\n|\n/g, "")

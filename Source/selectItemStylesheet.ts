@@ -11,7 +11,9 @@ export function nextItemStylesheet(
 	rootNode: Node,
 ): vscode.Selection {
 	let startOffset = editor.document.offsetAt(selection.anchor);
+
 	let endOffset = editor.document.offsetAt(selection.active);
+
 	let currentNode = getNode(rootNode, endOffset, true);
 
 	// Full property is selected, so select property value next
@@ -35,6 +37,7 @@ export function nextItemStylesheet(
 
 	// Get the first child of current node which is right after the cursor
 	let nextNode = currentNode.firstChild;
+
 	while (nextNode && endOffset >= nextNode.end) {
 		nextNode = nextNode.nextSibling;
 	}
@@ -54,8 +57,11 @@ export function prevItemStylesheet(
 	rootNode: Node,
 ): vscode.Selection {
 	let startOffset = editor.document.offsetAt(selection.anchor);
+
 	let endOffset = editor.document.offsetAt(selection.active);
+
 	let currentNode = getNode(rootNode, startOffset);
+
 	if (!currentNode) {
 		currentNode = rootNode;
 	}
@@ -71,6 +77,7 @@ export function prevItemStylesheet(
 
 	// Select the child that appears just before the cursor
 	let prevNode = currentNode.firstChild;
+
 	while (prevNode.nextSibling && prevNode.nextSibling.end <= startOffset) {
 		prevNode = prevNode.nextSibling;
 	}
@@ -94,6 +101,7 @@ function getSelectionFromNode(
 		node.type === "property" && selectPropertyValue
 			? node.valueToken.start
 			: nodeToSelect.start;
+
 	let selectionEnd =
 		node.type === "property" && selectPropertyValue
 			? node.valueToken.end
