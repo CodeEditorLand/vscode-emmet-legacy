@@ -14,6 +14,7 @@ export function splitJoinTag() {
 
 		return;
 	}
+
 	if (isStyleSheet(editor.document.languageId)) {
 		return;
 	}
@@ -27,6 +28,7 @@ export function splitJoinTag() {
 				selection,
 				rootNode,
 			);
+
 			editBuilder.replace(rangeToReplace, textToReplaceWith);
 		});
 	});
@@ -64,6 +66,7 @@ function getRangesToReplace(
 			document.positionAt(start),
 			document.positionAt(end),
 		);
+
 		textToReplaceWith = `></${nodeToUpdate.name}>`;
 	} else {
 		// Join Tag
@@ -71,6 +74,7 @@ function getRangesToReplace(
 			document.positionAt(nodeToUpdate.open.end - 1),
 			document.positionAt(nodeToUpdate.close.end),
 		);
+
 		textToReplaceWith = "/>";
 	}
 

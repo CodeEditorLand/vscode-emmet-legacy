@@ -14,6 +14,7 @@ export function mergeLines() {
 
 		return;
 	}
+
 	if (isStyleSheet(editor.document.languageId)) {
 		return;
 	}
@@ -27,6 +28,7 @@ export function mergeLines() {
 				selection,
 				rootNode,
 			);
+
 			editBuilder.replace(rangeToReplace, textToReplaceWith);
 		});
 	});
@@ -52,6 +54,7 @@ function getRangesToReplace(
 			document.offsetAt(selection.start),
 			true,
 		);
+
 		endNodeToUpdate = getNode(
 			rootNode,
 			document.offsetAt(selection.end),

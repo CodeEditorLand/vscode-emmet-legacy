@@ -13,9 +13,11 @@ export function validate(allowStylesheet: boolean = true): boolean {
 
 		return false;
 	}
+
 	if (!allowStylesheet && isStyleSheet(editor.document.languageId)) {
 		return false;
 	}
+
 	return true;
 }
 
@@ -23,12 +25,14 @@ export function getSyntax(document: vscode.TextDocument): string {
 	if (document.languageId === "jade") {
 		return "pug";
 	}
+
 	if (
 		document.languageId === "javascriptreact" ||
 		document.languageId === "typescriptreact"
 	) {
 		return "jsx";
 	}
+
 	return document.languageId;
 }
 
@@ -47,6 +51,7 @@ export function getProfile(syntax: string): any {
 	if (!options || typeof options === "string") {
 		return {};
 	}
+
 	let newOptions = {};
 
 	for (let key in options) {
@@ -99,11 +104,13 @@ export function getProfile(syntax: string): any {
 
 					break;
 				}
+
 				if (options[key] === false) {
 					newOptions["selfClosingStyle"] = "html";
 
 					break;
 				}
+
 				newOptions["selfClosingStyle"] = options[key];
 
 				break;
@@ -114,6 +121,7 @@ export function getProfile(syntax: string): any {
 				break;
 		}
 	}
+
 	return newOptions;
 }
 
@@ -138,6 +146,7 @@ export function getOpenCloseRange(
 			document.positionAt(nodeToUpdate.close.end),
 		);
 	}
+
 	return [openRange, closeRange];
 }
 

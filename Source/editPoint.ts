@@ -12,13 +12,16 @@ export function fetchEditPoint(direction: string): void {
 	}
 
 	let newSelections: vscode.Selection[] = [];
+
 	editor.selections.forEach((selection) => {
 		let updatedSelection =
 			direction === "next"
 				? nextEditPoint(selection.anchor, editor)
 				: prevEditPoint(selection.anchor, editor);
+
 		newSelections.push(updatedSelection);
 	});
+
 	editor.selections = newSelections;
 }
 
@@ -28,7 +31,9 @@ function nextEditPoint(
 ): vscode.Selection {
 	for (
 		let lineNum = position.line;
+
 		lineNum < editor.document.lineCount;
+
 		lineNum++
 	) {
 		let updatedSelection = findEditPoint(lineNum, editor, position, "next");
@@ -71,6 +76,7 @@ function findEditPoint(
 	if (lineNum === position.line && direction === "prev") {
 		lineContent = lineContent.substr(0, position.character);
 	}
+
 	let emptyAttrIndex =
 		direction === "next"
 			? lineContent.indexOf(

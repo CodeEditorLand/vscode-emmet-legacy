@@ -27,14 +27,17 @@ function balance(out: boolean) {
 
 		return;
 	}
+
 	if (isStyleSheet(editor.document.languageId)) {
 		return;
 	}
+
 	let getRangeFunction = out ? getRangeToBalanceOut : getRangeToBalanceIn;
 
 	let rootNode: Node = parse(editor.document.getText());
 
 	let newSelections: vscode.Selection[] = [];
+
 	editor.selections.forEach((selection) => {
 		let range = getRangeFunction(editor.document, selection, rootNode);
 
@@ -44,6 +47,7 @@ function balance(out: boolean) {
 	});
 
 	editor.selection = newSelections[0];
+
 	editor.selections = newSelections;
 }
 
@@ -66,12 +70,14 @@ function getRangeToBalanceOut(
 	) {
 		return innerSelection;
 	}
+
 	if (
 		outerSelection.contains(selection) &&
 		!outerSelection.isEqual(selection)
 	) {
 		return outerSelection;
 	}
+
 	return;
 }
 

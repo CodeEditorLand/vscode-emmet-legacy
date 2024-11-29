@@ -54,11 +54,13 @@ function getExpandedAbbreviation(
 	) {
 		return;
 	}
+
 	let [rangeToReplace, wordToExpand] = extractAbbreviation(position);
 
 	if (!rangeToReplace || !wordToExpand) {
 		return;
 	}
+
 	let syntax = getSyntax(document);
 
 	let expandedWord = expand(wordToExpand, {
@@ -68,9 +70,13 @@ function getExpandedAbbreviation(
 	});
 
 	let completionitem = new vscode.CompletionItem(wordToExpand);
+
 	completionitem.insertText = new vscode.SnippetString(expandedWord);
+
 	completionitem.documentation = removeTabStops(expandedWord);
+
 	completionitem.range = rangeToReplace;
+
 	completionitem.detail = "Expand Emmet Abbreviation";
 
 	// In non stylesheet like syntax, this extension returns expanded abbr plus posssible abbr completions
@@ -78,6 +84,7 @@ function getExpandedAbbreviation(
 	if (!isStyleSheet(syntax)) {
 		completionitem.kind = vscode.CompletionItemKind.Value;
 	}
+
 	return completionitem;
 }
 
@@ -91,6 +98,7 @@ function getCurrentWord(
 
 	if (wordAtPosition && wordAtPosition.start.character < position.character) {
 		let word = document.getText(wordAtPosition);
+
 		currentWord = word.substr(
 			0,
 			position.character - wordAtPosition.start.character,
@@ -130,12 +138,16 @@ function getAbbreviationSuggestions(
 				});
 
 				let item = new vscode.CompletionItem(snippet.key);
+
 				item.documentation = removeTabStops(expandedWord);
+
 				item.detail = "Complete Emmet Abbreviation";
+
 				item.insertText = snippet.key;
 
 				return item;
 			});
+
 		snippetCompletionsCache.set(syntax, completions);
 	}
 

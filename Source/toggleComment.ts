@@ -34,13 +34,19 @@ export function toggleComment() {
 
 	if (isStyleSheet(editor.document.languageId)) {
 		parseContent = parseStylesheet;
+
 		toggleCommentInternal = toggleCommentStylesheet;
+
 		startComment = startCommentStylesheet;
+
 		endComment = endCommentStylesheet;
 	} else {
 		parseContent = parse;
+
 		toggleCommentInternal = toggleCommentHTML;
+
 		startComment = startCommentHTML;
+
 		endComment = endCommentHTML;
 	}
 
@@ -55,6 +61,7 @@ export function toggleComment() {
 				positionForCommentStart,
 				positionForCommentEnd,
 			] = toggleCommentInternal(editor.document, selection, rootNode);
+
 			rangesToUnComment.forEach((rangeToDelete) => {
 				editBuilder.delete(rangeToDelete);
 			});
@@ -62,6 +69,7 @@ export function toggleComment() {
 			if (positionForCommentStart) {
 				editBuilder.insert(positionForCommentStart, startComment);
 			}
+
 			if (positionForCommentEnd) {
 				editBuilder.insert(positionForCommentEnd, endComment);
 			}
@@ -105,6 +113,7 @@ function getRangesToUnCommentHTML(
 				document.positionAt(node.start + startCommentHTML.length),
 			),
 		);
+
 		rangesToUnComment.push(
 			new vscode.Range(
 				document.positionAt(node.end),
@@ -149,6 +158,7 @@ function toggleCommentStylesheet(
 
 	// Uncomment children of current node and then comment the node
 	let nodeToComment = getNode(rootNode, selectionStart);
+
 	rangesToUnComment = getRangesToUnCommentStylesheet(
 		rootNode,
 		nodeToComment.start,
@@ -176,6 +186,7 @@ function getRangesToUnCommentStylesheet(
 	}
 
 	let rangesToUnComment = [];
+
 	rootNode.comments.forEach((comment) => {
 		let foundComment = false;
 
@@ -196,6 +207,7 @@ function getRangesToUnCommentStylesheet(
 					),
 				),
 			);
+
 			rangesToUnComment.push(
 				new vscode.Range(
 					document.positionAt(comment.end),

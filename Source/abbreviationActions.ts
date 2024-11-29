@@ -16,6 +16,7 @@ export function wrapWithAbbreviation() {
 
 		return;
 	}
+
 	let rangeToReplace: vscode.Range = editor.selection;
 
 	if (rangeToReplace.isEmpty) {
@@ -26,6 +27,7 @@ export function wrapWithAbbreviation() {
 			editor.document.lineAt(rangeToReplace.start.line).text.length,
 		);
 	}
+
 	let textToReplace = editor.document.getText(rangeToReplace);
 
 	let options = {
@@ -41,6 +43,7 @@ export function wrapWithAbbreviation() {
 			if (!abbr || !abbr.trim()) return;
 
 			let expandedText = expand(abbr, options);
+
 			editor.insertSnippet(
 				new vscode.SnippetString(expandedText),
 				rangeToReplace,
@@ -56,6 +59,7 @@ export function expandAbbreviation() {
 
 		return;
 	}
+
 	let rangeToReplace: vscode.Range = editor.selection;
 
 	let abbr = editor.document.getText(rangeToReplace);
@@ -71,6 +75,7 @@ export function expandAbbreviation() {
 	};
 
 	let expandedText = expand(abbr, options);
+
 	editor.insertSnippet(
 		new vscode.SnippetString(expandedText),
 		rangeToReplace,

@@ -45,6 +45,7 @@ export function nextItemStylesheet(
 	// Get next sibling of current node or the parent
 	while (!nextNode && currentNode) {
 		nextNode = currentNode.nextSibling;
+
 		currentNode = currentNode.parent;
 	}
 
@@ -81,6 +82,7 @@ export function prevItemStylesheet(
 	while (prevNode.nextSibling && prevNode.nextSibling.end <= startOffset) {
 		prevNode = prevNode.nextSibling;
 	}
+
 	prevNode = getDeepestNode(prevNode);
 
 	return getSelectionFromNode(prevNode, editor.document, true);

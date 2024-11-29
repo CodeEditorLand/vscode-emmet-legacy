@@ -37,6 +37,7 @@ export function nextItemHTML(
 	// Get next sibling of current node or the parent
 	while (!nextNode && currentNode) {
 		nextNode = currentNode.nextSibling;
+
 		currentNode = currentNode.parent;
 	}
 
@@ -74,6 +75,7 @@ export function prevItemHTML(
 			while (prevNode.nextSibling && prevNode.nextSibling.end < offset) {
 				prevNode = prevNode.nextSibling;
 			}
+
 			if (prevNode) {
 				prevNode = getDeepestNode(prevNode);
 			}

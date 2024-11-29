@@ -18,6 +18,7 @@ export function updateTag(tagName: string) {
 	let rootNode: Node = parse(editor.document.getText());
 
 	let rangesToUpdate = [];
+
 	editor.selections.reverse().forEach((selection) => {
 		rangesToUpdate = rangesToUpdate.concat(
 			getRangesToUpdate(editor, selection, rootNode),
@@ -52,7 +53,9 @@ function getRangesToUpdate(
 		);
 
 		let closeEnd = editor.document.positionAt(nodeToUpdate.close.end - 1);
+
 		ranges.push(new vscode.Range(closeStart, closeEnd));
 	}
+
 	return ranges;
 }

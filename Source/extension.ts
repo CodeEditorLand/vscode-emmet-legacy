@@ -19,6 +19,7 @@ import { updateTag } from "./updateTag";
 
 interface ISupportedLanguageMode {
 	id: string;
+
 	triggerCharacters: string[];
 }
 

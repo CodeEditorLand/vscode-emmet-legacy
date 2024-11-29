@@ -18,6 +18,7 @@ export function matchTag() {
 	let rootNode: Node = parse(editor.document.getText());
 
 	let updatedSelections = [];
+
 	editor.selections.forEach((selection) => {
 		let updatedSelection = getUpdatedSelections(
 			editor,

@@ -24,23 +24,30 @@ export function fetchSelectItem(direction: string): void {
 
 	if (isStyleSheet(editor.document.languageId)) {
 		nextItem = nextItemStylesheet;
+
 		prevItem = prevItemStylesheet;
+
 		parseContent = parseStylesheet;
 	} else {
 		nextItem = nextItemHTML;
+
 		prevItem = prevItemHTML;
+
 		parseContent = parse;
 	}
 
 	let rootNode: Node = parseContent(editor.document.getText());
 
 	let newSelections: vscode.Selection[] = [];
+
 	editor.selections.forEach((selection) => {
 		let updatedSelection =
 			direction === "next"
 				? nextItem(selection, editor, rootNode)
 				: prevItem(selection, editor, rootNode);
+
 		newSelections.push(updatedSelection ? updatedSelection : selection);
 	});
+
 	editor.selections = newSelections;
 }
