@@ -55,9 +55,7 @@ function getRangeToRemove(
 	if (closeRange) {
 		for (
 			let i = openRange.start.line + 1;
-
 			i <= closeRange.start.line;
-
 			i++
 		) {
 			let lineContent = editor.document.lineAt(i).text;

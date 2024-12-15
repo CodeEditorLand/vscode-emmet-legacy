@@ -31,9 +31,7 @@ function nextEditPoint(
 ): vscode.Selection {
 	for (
 		let lineNum = position.line;
-
 		lineNum < editor.document.lineCount;
-
 		lineNum++
 	) {
 		let updatedSelection = findEditPoint(lineNum, editor, position, "next");
